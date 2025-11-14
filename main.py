@@ -1,16 +1,16 @@
-import subprocess
-import re
+import funcoes
+from colorama import Fore, Style
 
-lista_opcoes = r"""
- ________   _______  _________  ________  ________  ________     
-|\   ___  \|\  ___ \|\___   ___\\   __  \|\   ____\|\   ____\    
-\ \  \\ \  \ \   __/\|___ \  \_\ \  \|\ /\ \  \___|\ \  \___|    
- \ \  \\ \  \ \  \_|/__  \ \  \ \ \   __  \ \_____  \ \  \       
-  \ \  \\ \  \ \  \_|\ \  \ \  \ \ \  \|\  \|____|\  \ \  \____  
-   \ \__\\ \__\ \_______\  \ \__\ \ \_______\____\_\  \ \_______\
-    \|__| \|__|\|_______|   \|__|  \|_______|\_________\|_______|
-                                            \|_________|         
-                                                                 
+print (Fore.GREEN + r"""
+ ________   _______  _________        ________  ________  ________  ___  ________  ________      
+|\   ___  \|\  ___ \|\___   ___\     |\   __  \|\   __  \|\   ____\|\  \|\   ____\|\   ____\     
+\ \  \\ \  \ \   __/\|___ \  \_|     \ \  \|\ /\ \  \|\  \ \  \___|\ \  \ \  \___|\ \  \___|_    
+ \ \  \\ \  \ \  \_|/__  \ \  \       \ \   __  \ \   __  \ \_____  \ \  \ \  \    \ \_____  \   
+  \ \  \\ \  \ \  \_|\ \  \ \  \       \ \  \|\  \ \  \ \  \|____|\  \ \  \ \  \____\|____|\  \  
+   \ \__\\ \__\ \_______\  \ \__\       \ \_______\ \__\ \__\____\_\  \ \__\ \_______\____\_\  \ 
+    \|__| \|__|\|_______|   \|__|        \|_______|\|__|\|__|\_________\|__|\|_______|\_________\
+                                                            \|_________|             \|_________|
+                                                                                                                                                                                                                                                         
      ____                       _           __                  
    / __/___  _____   _      __(_)___  ____/ /___ _      _______
   / /_/ __ \/ ___/  | | /| / / / __ \/ __  / __ \ | /| / / ___/
@@ -37,42 +37,62 @@ lista_opcoes = r"""
 [14] net use                 - Conectar a um recurso compartilhado
 [15] net share               - Listar recursos compartilhados
 
-"""
+""" + Style.RESET_ALL)
 
-
-
-def executar_powershell(lista_opcoes):
+def opcoes():
     while True:
-        print(lista_opcoes)
-        selecao = int(input("Digite a opção [?]: "))
+
+        selecao = int(input(Fore.YELLOW + "Digite a opção [?]: " + Style.RESET_ALL))
+
         if selecao == 0:
+            print("Saindo...")
+            funcoes.time.sleep(0.5)
             exit()
+
         elif selecao == 1:
-            ipconfig_formatado()
+            funcoes.ipconfig()
+
         elif selecao == 2:
-            ipconfig_all()
+            funcoes.ipconfig_all()
+
         elif selecao == 3:
-            nslookup()
+            funcoes.nslookup()
 
+        elif selecao == 4:
+            funcoes.ipconfig_release()
 
-def ipconfig_menu():
-    processo = subprocess.run(
-        ['powershell', '-Command', 'ipconfig | Format-Table -AutoSize | Out-String -Width 200'],
-        capture_output=True, text=True, shell=False )
-    print(processo.stdout)
+        elif selecao == 5:
+            funcoes.ipconfig_renew()
 
-def ipconfig_all():
-    processo = subprocess.run(
-        ['powershell', '-Command', 'ipconfig /all | Format-Table -AutoSize | Out-String -Width 200'],
-        capture_output=True, text=True, shell=False )
-    print(processo.stdout)
+        elif selecao == 6:
+            funcoes.ipconfig_flush_dns()
+        
+        elif selecao == 7:
+            funcoes.ping()
 
-def nslookup():
-    dominio = input('Insira o domínio: ')
-    processo = subprocess.run(
-        ['powershell', '-Command', f'nslookup {dominio} | Format-Table -AutoSize | Out-String -Width 200'],
-        capture_output=True, text=True, shell=False )
-    print(processo.stdout)
+        elif selecao == 8:
+            funcoes.tracert()
 
+        elif selecao == 9:
+            funcoes.pathping()
 
-executar_powershell(lista_opcoes)
+        elif selecao == 10:
+            funcoes.netstat_an()
+        
+        elif selecao == 11:
+            funcoes.arp_a()
+
+        elif selecao == 12:
+            funcoes.hostname()
+
+        elif selecao == 13:
+            funcoes.getmac()
+
+        elif selecao == 14:
+            funcoes.net_use()
+
+        elif selecao == 15:
+            funcoes.net_share()
+
+            
+opcoes()
