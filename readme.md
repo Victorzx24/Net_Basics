@@ -12,9 +12,13 @@ O projeto facilita o uso de comandos como `ipconfig`, `ping`, `tracert`, `netsta
 ## 🚀 **Objetivos do Projeto**
 
 ✔ Automatizar comandos básicos de rede para Windows
+
 ✔ Melhorar entendimento de diagnósticos e troubleshooting
+
 ✔ Praticar Python com **subprocess**, **regex**, **colorama**
+
 ✔ Tornar a saída dos comandos mais legível
+
 ✔ Criar uma ferramenta simples, mas funcional, para estudo contínuo
 
 ---
